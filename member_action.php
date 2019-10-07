@@ -21,7 +21,7 @@ echo "<tr><td>State:</td><td>". $_GET['state'] ."</td></tr>";
 echo "<tr><td>Zip Code:</td><td>". $_GET['zipcode'] ."</td></tr>";
 echo "<tr><td>Jeffco Resident:</td><td>". $_GET['jeffco_resident'] ."</td></tr>";
 echo "<tr><td>Ethnicity:</td><td>". $_GET['ethnicity'] ."</td></tr>";
-echo "<tr><td>Ethnicity:</td><td>". $_GET['member_date'] ."</td></tr>";
+echo "<tr><td>Member since:</td><td>". $_GET['member_date'] ."</td></tr>";
 echo "</table><br>";
 
 IF($_GET['maction']=='insert') {

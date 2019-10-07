@@ -3,8 +3,8 @@ $sql='
 SELECT 
 count(*) as families_total 
 ,SUM(family_size) as people_total
-,SUM(over64) AS children_total
-,SUM(under19) as seniors_total
+,SUM(under19) AS children_total
+,SUM(over64) as seniors_total
 FROM(
 SELECT 
 	m.member_id
