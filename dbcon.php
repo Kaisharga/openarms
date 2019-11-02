@@ -1,4 +1,4 @@
-<?php $link = mysqli_connect("localhost", "openarms", "<password>", "openarms"); 
+<?php $link = mysqli_connect("localhost", "openarms", "4rms0p3n!", "openarms"); 
   
 if ($link == false) { 
     die("ERROR: Could not connect. "
