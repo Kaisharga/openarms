@@ -8,9 +8,16 @@ FROM
 	members m
 	INNER JOIN visits v ON m.member_id=v.member_id
 WHERE  v.visit_date="'.date("Y-m-d").'"
-ORDER BY v.line_number ASC
  ';
-#echo $line_sql;
+ 
+ if (isset($_GET['search'])) {
+	$text = $_GET['search'];
+	$line_sql = $line_sql . " AND (m.first_name LIKE '%" . $text . "%' OR m.last_name LIKE '%" . $text . "%')";
+ }
+  
+ $line_sql = $line_sql . "
+ORDER BY v.line_number ASC
+";
 
 if ($res = mysqli_query($link, $line_sql)) { 
     if (mysqli_num_rows($res) > 0) { 

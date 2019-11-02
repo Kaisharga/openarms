@@ -85,7 +85,7 @@
 	<option value="AZ">Arizona</option>
 	<option value="AR">Arkansas</option>
 	<option value="CA">California</option>
-	<option value="CO">Colorado</option>
+	<option value="CO" selected>Colorado</option>
 	<option value="CT">Connecticut</option>
 	<option value="DE">Delaware</option>
 	<option value="DC">District Of Columbia</option>
