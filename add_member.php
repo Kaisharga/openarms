@@ -18,7 +18,7 @@ echo "<tr><td>Ethnicity:</td><td>". $_GET['ethnicity'] ."</td></tr>";
 echo "</table><br>";
 
 $isql ='INSERT INTO members (
-member_date
+member_date   
 ,first_name
 ,last_name
 ,family_size
