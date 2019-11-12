@@ -1,4 +1,7 @@
 <?php
+$year=date("Y");
+$month='01';
+
 $sql='
 SELECT 
 count(*) as families_total 
@@ -34,7 +37,7 @@ FROM
 	members m
 ,visits v
 WHERE m.member_id=v.member_id
-AND v.visit_date >= "'.date('Y-m-01').'")
+AND v.visit_date >= "'.date($year . '-' . $month . '-01').'")
 nova
 ';
 

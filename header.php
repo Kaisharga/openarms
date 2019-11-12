@@ -32,7 +32,6 @@ a:hover {
 </head>
 <body>
 <?php
-
 date_default_timezone_set('America/Denver');
 $link = mysqli_connect("localhost", "openarms", "4rms0p3n!", "openarms"); 
   
@@ -55,6 +54,8 @@ echo "</td></tr><tr><td align=center>";
 echo "<a href=index.php>MEMBERS</a>";
 echo "</td></tr><tr><td align=center>";
 echo "<a href=reports.php>REPORTS</a>";
+echo "</td></tr><tr><td align=center>";
+echo "<a href=reports_select.php>REPORT SELECTION</a>";
 echo "</td></tr></table>";
 echo "</td><td valign=top>";
 
