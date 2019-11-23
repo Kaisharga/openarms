@@ -3,16 +3,18 @@ INCLUDE("header.php");
 ?>
 
 <div>
-	<h2 valign=top>DAILY CHECK-IN</h2>
-</div>
-<div>
+<table>
+<tr><td>
+<h2 valign=top>DAILY CHECK-IN</h2>
+</td><td>
 	<form action=daily_checkin.php method=GET style='display:inline-block'>
-		<input type=text name='search' />
-		<button type="submit">Search</button>
+	<font color=white>Name:</font>
+	<input type=text name='search' />
+	<button type="submit">Search</button>
+	<button type="submit">Clear</button>
 	</form>
-	<form action=daily_checkin.php method=GET style='display:inline-block'>
-		<button type="submit">Clear</button>
-	</form>
+</td></tr>
+</table>	
 </div>
 
 <?php

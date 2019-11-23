@@ -14,6 +14,8 @@ $c_box_num=0;
 $c_boxline_num=0;
 
 }
+date_default_timezone_set('America/Denver');
+echo date("Y-m-d");
 	
 $sql='
 INSERT INTO visits (

@@ -1,9 +1,23 @@
 <?php
 
 INCLUDE("header.php");
+?>
 
-echo "<h2 valign=top>MEMBERS</h2>"; 
-
+<div>
+<table>
+<tr><td>
+<h2 valign=top>MEMBERS</h2>
+</td><td>
+	<form action=index.php method=GET style='display:inline-block'>
+	<font color=white>Name:</font>
+	<input type=text name='search' />
+	<button type="submit">Search</button>
+	<button type="submit">Clear</button>
+	</form>
+</td></tr>
+</table>	
+</div>
+<?php
 
 
 echo "<table><tr><td valign=top>";

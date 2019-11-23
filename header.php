@@ -53,7 +53,7 @@ echo "<a href=daily_commodities.php>DAILY COMMODITIES</a>";
 echo "</td></tr><tr><td align=center>";
 echo "<a href=index.php>MEMBERS</a>";
 echo "</td></tr><tr><td align=center>";
-echo "<a href=reports.php>REPORTS</a>";
+echo "<a href=reports.php>QUICK REPORT</a>";
 echo "</td></tr><tr><td align=center>";
 echo "<a href=reports_select.php>REPORT SELECTION</a>";
 echo "</td></tr></table>";

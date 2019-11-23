@@ -53,14 +53,15 @@ ORDER BY LAST_NAME ASC
 
 if ($res = mysqli_query($link, $sql)) { 
     if (mysqli_num_rows($res) > 0) { 
-        echo "<table bgcolor=grey valign=top>"; 
-        echo "<tr><th align=left>Name</th><th align=right>Commodities Box</th><th></th></tr>";
+        echo "<table bgcolor=black><tr><td>";
+	echo "<table bgcolor=white valign=top border=1>"; 
+        echo "<tr><th align=left>Name <i>(Family size)</i></th><th align=right>Commodities Box</th><th></th></tr>";
         while ($row = mysqli_fetch_array($res)) { 
 		
 			echo "<form action=checkit_in.php method=POST>";
             echo "<tr><td>";
-			echo $row['last_name'].",".$row['first_name']." ".$row['family_size'];
-			echo "</td><td align=right>";
+			echo $row['last_name'].",".$row['first_name']." (".$row['family_size'].")";
+			echo "</td><td align=center>";
 			if($row['last_commodities'] == 0) {echo "eligible <input type=checkbox name=commodities> "; 
 			}else{
 				echo $row['last_commodities'];
@@ -72,7 +73,8 @@ if ($res = mysqli_query($link, $sql)) {
 ?><input type="hidden" id="commodities_line_num" name="commodities_line_num" value="<?php echo $mboxline; ?>"> <?php
 			echo "</form>";
         } 
-        echo "</table>"; 
+        echo "</table>";
+	echo "</tr></td></table>"; 
     } 
     else { 
         echo "No matching records are found."; 
