@@ -40,7 +40,7 @@ if ($res = mysqli_query($link, $line_sql)) {
         echo "No matching records are found."; 
     } 
 } else { 
-    echo "ERROR: Could not able to execute $sql. "
+    echo "ERROR: Could not able to execute $line_sql. "
                                 .mysqli_error($link); 
 } 
 ?>

@@ -56,6 +56,8 @@ echo "</td></tr><tr><td align=center>";
 echo "<a href=reports.php>QUICK REPORT</a>";
 echo "</td></tr><tr><td align=center>";
 echo "<a href=reports_select.php>REPORT SELECTION</a>";
+echo "</td></tr><tr><td align=center>";
+echo "<a href=print_list.php>PRINT LINE FOR TODAY</a>";
 echo "</td></tr></table>";
 echo "</td><td valign=top>";
 

@@ -21,7 +21,7 @@ if ($res = mysqli_query($link, $sql)) {
         echo "<table bgcolor=black valign=top>"; 
         while ($row = mysqli_fetch_array($res)) { 
             echo "<tr><td><a href=index.php?member_id=".$row['member_id'].">"; 	
-			echo $row['last_name'].",".$row['first_name']." ".$row['family_size']."</td></tr>"; 
+			echo $row['last_name'].",".$row['first_name']." (".$row['family_size'].")</td></tr>"; 
         } 
         echo "</table>"; 
     } 

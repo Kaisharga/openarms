@@ -3,10 +3,21 @@
 include("header.php");
 
 echo "<h2 valign=top>REPORT SELECTION RESULTS</h2>";
+echo "<h3 valign=top>" . date("D F d Y g:i A") . "</h3>";
 
 $rpt_value = $_POST['rpt_choice'];
 $date_value = $_POST['date_choice'];
 $group_value = $_POST['group_choice'];
+if( empty($_POST["date1"]) ) { 
+  $date1 = "";
+ } else {
+  $date1 = $_POST['date1'];
+ }
+ if( empty($_POST["date2"]) ) { 
+  $date2 = "";
+ } else {
+  $date2 = $_POST['date2'];
+ }
 
 $select_fields = "";
 switch ($rpt_value) {
@@ -52,6 +63,10 @@ switch ($date_value) {
     $year = date("Y", strtotime("-1 year"));
     $start_date = $year . "-01-01";
     $end_date = $year . "-12-31";
+    break;
+  case "custom":
+    $start_date = $date1;
+    $end_date = $date2;
     break;
 }
 
@@ -105,8 +120,8 @@ if ($res = mysqli_query($link, $sql)) {
     }
     echo "</pre>";
   } else {
-    echo nl2br("No matching records are found for: \n");
-    echo $sql;
+    echo nl2br("No matching records are found for your selection. \n");
+    // echo $sql;
   }
 } else {
   echo nl2br("ERROR: Could not able to execute $sql. \n");
