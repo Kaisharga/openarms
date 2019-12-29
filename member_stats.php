@@ -26,7 +26,7 @@ if ($res = mysqli_query($link, $month_sql)) {
 		echo "<table border=1 width=200 align=center><tr><td>";
 		echo "<table align=center width=100%><tr><th colspan=2 align=center>Month to Date</th></tr>";
 		echo "<tr><td>Visits</td><td>".$row['visits']."</td></tr>";
-		echo "<tr><td colspan=2 align=center>People Feed</th></tr>";
+		echo "<tr><td colspan=2 align=center>People Fed</th></tr>";
 		echo "<tr><td>Family members</td><td align=center>".$row['people']."</td></tr>";
 		echo "<tr><td>Children</td><td align=center>".$row['kids']."</td></tr>";
 		echo "<tr><td>Seniors</td><td align=center>".$row['seniors']."</td></tr>";
@@ -61,7 +61,7 @@ if ($res = mysqli_query($link, $life_sql)) {
 		echo "<table border=1 width=200 align=center><tr><td>";
 		echo "<table align=center width=100%><tr><th colspan=2 align=center>Life to Date</th></tr>";
 		echo "<tr><td>Visits</td><td>".$row['visits']."</td></tr>";
-		echo "<tr><td colspan=2 align=center>People Feed</th></tr>";
+		echo "<tr><td colspan=2 align=center>People Fed</th></tr>";
 		echo "<tr><td>Family members</td><td align=center>".$row['people']."</td></tr>";
 		echo "<tr><td>Children</td><td align=center>".$row['kids']."</td></tr>";
 		echo "<tr><td>Seniors</td><td align=center>".$row['seniors']."</td></tr>";
