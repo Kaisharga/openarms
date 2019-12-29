@@ -1,4 +1,5 @@
 <?php
+
 $maxline = 'SELECT MAX(line_number) as max_line from visits WHERE visit_date="'.date("Y-m-d").'"';
 $maxbox = 'SELECT MAX(commodities_box_num) as max_box from visits WHERE visit_date="'.date("Y-m-d").'"';
 $maxboxline = 'SELECT MAX(commodities_line_num) as max_boxline from visits WHERE visit_date="'.date("Y-m-d").'"';
@@ -36,13 +37,13 @@ SELECT m.*,
 (
     SELECT COALESCE(MAX(v.visit_date), 0)
     FROM visits v 
-    WHERE m.member_id=v.member_id AND v.visit_date > DATE_SUB(UTC_DATE(), INTERVAL 30 DAY) AND commodities_box_pack > 0
+    WHERE m.member_id=v.member_id AND MONTH(v.visit_date) = MONTH(CURDATE()) AND commodities_box_pack > 0  
 ) last_commodities
 FROM members m
 WHERE 1=1
 "; 
 
- if (isset($_GET['search'])) {
+if (isset($_GET['search'])) {
 	$text = $_GET['search'];
 	$sql = $sql . " AND (m.first_name LIKE '%" . $text . "%' OR m.last_name LIKE '%" . $text . "%')";
  }

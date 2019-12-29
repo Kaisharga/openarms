@@ -1,5 +1,10 @@
 <?php
-INCLUDE("header.php");
+date_default_timezone_set('America/Denver');
+$link = mysqli_connect("localhost", "openarms", "4rms0p3n!", "openarms");
+if ($link == false) { 
+    echo "ERROR: Could not connect. "
+                .mysqli_connect_error(); 
+} 
 
 // line_number gets corrupted if any check-in entries are deleted.
 $line_sql1 = '
@@ -28,9 +33,9 @@ if ($res2 = mysqli_query($link, $line_sql2)) {
 			echo "<tr>";
             echo "<td>".$row['row_num']." - ".$row['last_name'].",".$row['first_name']." (".$row['family_size'].")</td>"; 
 			if($row['commodities_box']==1){ 
-			echo "<td>Box # ".$row['commodities_box_num']."</td>";
+			    echo "<td>Box # ".$row['commodities_box_num']."</td>";
 			} else {
-			echo "<td>No box</td>";	
+			    echo "<td>No box</td>";	
 			}
         	echo "</td></tr>";
         } 
