@@ -1,7 +1,7 @@
 <?php
 INCLUDE("header.php");
 ?>
-
+ 
 <div>
 <table>
 <tr><td>
@@ -10,8 +10,9 @@ INCLUDE("header.php");
 	<form action=daily_checkin.php method=GET style='display:inline-block'>
 	<font color=white>Name:</font>
 	<input type=text name='search' />
-	<button type="submit">Search</button>
-	<button type="submit">Clear</button>
+	<button type="submit" name="search_name" value="search_name">Search by Name</button>
+	<button type="submit" name="search_addr" value="search_addr">Search by Address</button>
+	<button type="reset">Clear</button>
 	</form>
 </td></tr>
 </table>	

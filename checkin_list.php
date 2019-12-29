@@ -17,7 +17,7 @@ if ($res = mysqli_query($link, $maxbox)) {
 			$mbox=$row['max_box'];
 		}
 	}
-}
+} 
 if ($res = mysqli_query($link, $maxboxline)) { 
     if (mysqli_num_rows($res) > 0) { 
 		while ($row = mysqli_fetch_array($res)) { 
@@ -43,11 +43,14 @@ FROM members m
 WHERE 1=1
 "; 
 
-if (isset($_GET['search'])) {
+if (isset($_GET['search']) && isset($_GET['search_name'])) {
 	$text = $_GET['search'];
 	$sql = $sql . " AND (m.first_name LIKE '%" . $text . "%' OR m.last_name LIKE '%" . $text . "%')";
- }
- 
+} else if (isset($_GET['search']) && isset($_GET['search_addr'])) {
+		$text = $_GET['search'];
+		$sql = $sql . " AND (m.addr_line_1 LIKE '%" . $text . "%' OR m.addr_line_2 LIKE '%" . $text . "%' OR m.city LIKE '%" . $text . "%' OR m.zipcode LIKE '%" . $text . "%')";
+}
+
 $sql = $sql . "
 ORDER BY LAST_NAME ASC
 ";
