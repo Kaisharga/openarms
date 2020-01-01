@@ -4,7 +4,7 @@ INCLUDE("header.php");
 
 echo "<h2 valign=top>REPORT SELECTION</h2>";
 ?> 
-<form action="reports_result.php" method="post">
+<form action="reports_result.php" method="post" target=\"_blank\" >
   <h4>Choose the Report</h4>
   <input type="radio" name="rpt_choice" value="people_rpt" checked autofocus> Number of Adults, Childen, and Seniors<br>
   <input type="radio" name="rpt_choice" value="TEFAP_rpt"> Number of People and TEFAP by Family and Individuals<br>
@@ -29,7 +29,8 @@ echo "<h2 valign=top>REPORT SELECTION</h2>";
   <input type="radio" name="group_choice" value="group_both"> Group by Week and Ethnicity<br>
   <br>
 
-<input type="submit">
+<input type="submit" onsubmit="popupCode();return false;">
+
 </form>
 
 <?php

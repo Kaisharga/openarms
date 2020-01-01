@@ -1,9 +1,11 @@
 <?php
 
-include("header.php");
-
-echo "<h2 valign=top>REPORT SELECTION RESULTS</h2>";
-echo "<h3 valign=top>" . date("D F d Y g:i A") . "</h3>";
+date_default_timezone_set('America/Denver');
+$link = mysqli_connect("localhost", "openarms", "4rms0p3n!", "openarms");
+if ($link == false) { 
+    echo "ERROR: Could not connect. "
+                .mysqli_connect_error(); 
+} 
 
 $rpt_value = $_POST['rpt_choice'];
 $date_value = $_POST['date_choice'];
@@ -22,12 +24,15 @@ if( empty($_POST["date1"]) ) {
 $select_fields = "";
 switch ($rpt_value) {
   case "people_rpt":
+    echo "<h3 valign=top align=center>Total People Served</h3>";
     $select_fields = 'SUM(family_size) as "Total People", SUM(family_size - under19 - over64) as "Adults", SUM(under19) AS "Children", SUM(over64) as "Seniors"';
     break;
   case "TEFAP_rpt":
+    echo "<h3 valign=top align=center>People and TEFAP</h3>";
     $select_fields = 'COUNT(family_size) as "Families", SUM(family_size) as "Total People", COUNT(commodities_box) as "Boxes Given", SUM(visit_id) as "Visits Made"';
     break;
   case "count_rpt":
+    echo "<h3 valign=top align=center>Total Goods Given</h3>";
     $select_fields = 'COUNT(commodities_box) as "Boxes Given", COUNT(visit_id) as "Visits Made"';
     break;
 }
@@ -37,17 +42,20 @@ $start_date = "";
 $end_date = "";
 switch ($date_value) {
   case "curr_mo":
+    echo "<h3 valign=top align=center>Current Month</h3>";
     $year = date("Y");
     $month = date("m");
     $start_date = $year . "-" . $month . "-01";
     $end_date = $year . "-" . $month . "-28";
     break;
   case "curr_yr":
+    echo "<h3 valign=top align=center>Current Year</h3>";
     $year = date("Y");
     $start_date = $year . "-01-01";
     $end_date = $year . "-12-31";
     break;
   case "last_mo":
+    echo "<h3 valign=top align=center>Last Month</h3>";
     if (date("m") == "01") {
       $year = date("Y", strtotime("-1 year"));
       $start_date = $year . "-12-01";
@@ -60,11 +68,13 @@ switch ($date_value) {
     }
     break;
   case "last_yr":
+    echo "<h3 valign=top align=center>Last Year</h3>";
     $year = date("Y", strtotime("-1 year"));
     $start_date = $year . "-01-01";
     $end_date = $year . "-12-31";
     break;
   case "custom":
+    echo "<h3 valign=top align=center>Custom Date Range from ".$date1." to ".$date2."</h3>";
     $start_date = $date1;
     $end_date = $date2;
     break;
@@ -89,6 +99,8 @@ switch ($group_value) {
     $order_fields = ' ORDER BY visit_date, Ethnicity';
     break;
 }
+
+echo "<h4 valign=top align=center> Generated on " . date("D F d Y g:i A") . "</h4>";
 
 
 $sql = $select_fields . "FROM members m, visits v WHERE m.member_id=v.member_id 

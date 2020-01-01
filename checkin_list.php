@@ -37,7 +37,7 @@ SELECT m.*,
 (
     SELECT COALESCE(MAX(v.visit_date), 0)
     FROM visits v 
-    WHERE m.member_id=v.member_id AND MONTH(v.visit_date) = MONTH(CURDATE()) AND commodities_box_pack > 0  
+    WHERE m.member_id=v.member_id AND MONTH(v.visit_date) = MONTH(CURDATE()) AND YEAR(v.visit_date) = YEAR(CURDATE())AND commodities_box_pack > 0  
 ) last_commodities
 FROM members m
 WHERE 1=1
