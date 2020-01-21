@@ -30,8 +30,12 @@ if ($res2 = mysqli_query($link, $line_sql2)) {
 		echo "<tr><th colspan=3>Today's Line for<br>".date("l F jS Y")."</th></tr>";
         while ($row = mysqli_fetch_array($res2)) { 
 
-			echo "<tr>";
-            echo "<td>".$row['row_num']." - ".$row['last_name'].",".$row['first_name']." (".$row['family_size'].")</td>"; 
+			echo "<tr><td>";
+			echo $row['row_num']." - ";
+			if($row['validated'] == 1) { echo "<font size=+2 color=green>"; } else { echo "<font size=+2 color=black>NV [ "; }
+            echo $row['last_name'].",".$row['first_name']." (".$row['family_size'].")";
+			if($row['validated'] == 0) { echo " ]"; }			
+			echo "</font></td>"; 
 			if($row['commodities_box']==1){ 
 			    echo "<td>Box # ".$row['commodities_box_num']."</td>";
 			} else {

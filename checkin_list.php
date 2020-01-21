@@ -58,14 +58,14 @@ ORDER BY LAST_NAME ASC
 if ($res = mysqli_query($link, $sql)) { 
     if (mysqli_num_rows($res) > 0) { 
         echo "<table bgcolor=black><tr><td>";
-	echo "<table bgcolor=white valign=top border=1>"; 
+	echo "<table bgcolor=white valign=top border=1 padding=16>";
         echo "<tr><th align=left>Name <i>(Family size)</i></th><th align=right>Commodities Box</th><th></th></tr>";
         while ($row = mysqli_fetch_array($res)) { 
-		
 			echo "<form action=checkit_in.php method=POST>";
             echo "<tr><td>";
+			if($row['validated'] == 1) { echo "<font size=+2 color=green>"; }else{ echo "<font size=+2 color=black>"; }
 			echo $row['last_name'].",".$row['first_name']." (".$row['family_size'].")";
-			echo "</td><td align=center>";
+			echo "</font></td><td align=center>";
 			if($row['last_commodities'] == 0) {echo "eligible <input type=checkbox name=commodities> "; 
 			}else{
 				echo $row['last_commodities'];

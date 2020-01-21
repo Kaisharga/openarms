@@ -158,6 +158,9 @@ if ($res = mysqli_query($link, $list_sql)) {
   <option value="Hispanic" <?php if($row['ethnicity']=="Hispanic"){ echo "selected"; } ?>>Hispanic</option>
   <option value="Native American" <?php if($row['ethnicity']=="Native American"){ echo "selected"; } ?>>Native American</option>
 </select></td></tr>
+<tr><td>Validated:</td><td>
+<input type="checkbox" name="validated" <?php if($row['validated']==1) { echo "checked"; }?>></td></tr>
+
 <tr><td>Last Review Date:</td><td><?php echo $row['data_review_date']; ?></td></tr>
 <tr><td align=center><button type="submit" name="maction" value="update">UPDATE</button></td>
 <td align=center><button type="submit" name="maction" value="delete">DELETE</button></td></tr>

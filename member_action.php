@@ -7,6 +7,12 @@ $jeffco=1;
 $jeffco=0;
 }
 
+if (isset($_GET['validated'])) { 
+$validated=1;
+}ELSE{ 
+$validated=0;
+}
+
 echo "<table>";
 echo "<tr><th colspan=2>". $_GET['maction'] ."</th></tr>";
 echo "<tr><td>First name:</td><td>". $_GET['first_name'] ."</td></tr>";
@@ -22,6 +28,7 @@ echo "<tr><td>Zip Code:</td><td>". $_GET['zipcode'] ."</td></tr>";
 echo "<tr><td>Jeffco Resident:</td><td>". $_GET['jeffco_resident'] ."</td></tr>";
 echo "<tr><td>Ethnicity:</td><td>". $_GET['ethnicity'] ."</td></tr>";
 echo "<tr><td>Member since:</td><td>". $_GET['member_date'] ."</td></tr>";
+echo "<tr><td>Validated</td><td>". $_GET['validated'] ."</td></tr>";
 echo "</table><br>";
 
 IF($_GET['maction']=='insert') {
@@ -71,6 +78,8 @@ set member_date = "'. $_GET['member_date'] .'"
 ,jeffco_resident = "'.$jeffco.'"
 ,ethnicity = "'.$_GET['ethnicity'].'"
 ,data_review_date = "'.date("Ymd").'"
+,validated = "'.$validated.'"
+
 WHERE
 members.member_id='.$_GET['member_id'];
 }ELSEIF($_GET['maction']=='delete') {

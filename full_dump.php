@@ -1,4 +1,6 @@
 <?php
+INCLUDE("header.php");
+
 $sql="
 SELECT 
 	m.member_id

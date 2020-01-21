@@ -18,8 +18,10 @@ if ($res = mysqli_query($link, $line_sql)) {
 		echo "<tr><th colspan=3>Today's Line for<br>".date("l F jS Y")."</th></tr>";
         while ($row = mysqli_fetch_array($res)) { 
 
-			echo "<tr>";
-            		echo "<td>".$row['last_name'].",".$row['first_name']." (".$row['family_size'].")</td>"; 
+			echo "<tr><td>";				
+				if($row['validated'] == 1) { echo "<font size=+2 color=green>"; }else{ echo "<font size=+2 color=black>"; }
+					echo $row['last_name'].",".$row['first_name']." (".$row['family_size'].")";
+					echo "</font></td>"; 
 			if($row['commodities_box']==1){ 
 			echo "<td>Box # ".$row['commodities_box_num']."</td>";
 			} else {
