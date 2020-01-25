@@ -1,5 +1,12 @@
 <?php
 
+date_default_timezone_set('America/Denver');
+$link = mysqli_connect("localhost", "openarms", "4rms0p3n!", "openarms");
+if ($link == false) { 
+    echo "ERROR: Could not connect. "
+                .mysqli_connect_error(); 
+} 
+
 $line_sql = '
 SELECT 
 	m.*
