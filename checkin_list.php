@@ -39,6 +39,7 @@ SELECT m.*,
     FROM visits v 
     WHERE m.member_id=v.member_id AND MONTH(v.visit_date) = MONTH(CURDATE()) AND YEAR(v.visit_date) = YEAR(CURDATE())AND commodities_box_pack > 0  
 ) last_commodities
+,ROW_NUMBER() OVER (ORDER BY LAST_NAME ASC) AS intRow
 FROM members m
 WHERE 1=1
 "; 
@@ -58,14 +59,19 @@ ORDER BY LAST_NAME ASC
 if ($res = mysqli_query($link, $sql)) { 
     if (mysqli_num_rows($res) > 0) { 
         echo "<table bgcolor=black><tr><td>";
-	echo "<table bgcolor=white valign=top border=1 padding=16>";
+		echo "<table bgcolor=white valign=top border=1 padding=16>";
         echo "<tr><th align=left>Name <i>(Family size)</i></th><th align=right>Commodities Box</th><th></th></tr>";
-        while ($row = mysqli_fetch_array($res)) { 
+        
+		while ($row = mysqli_fetch_array($res)) { 
 			echo "<form action=checkit_in.php method=POST>";
-            echo "<tr><td>";
-			if($row['validated'] == 1) { echo "<font size=+2 color=green>"; }else{ echo "<font size=+2 color=black>"; }
+            if($row['intRow'] % 2 == 0){
+			echo "<tr bgcolor=2B2D2F color=white><td>";
+			}else{
+			echo "<tr bgcolor=black color=white><td>";
+			}
+			if($row['validated'] == 1) { echo "<font size=+3 color=green>"; }else{ echo "<font size=+3 color=white>"; }
 			echo $row['last_name'].",".$row['first_name']." (".$row['family_size'].")";
-			echo "</font></td><td align=center>";
+			echo "</font></td><td align=center><font size=+2 color=white>";
 			if($row['last_commodities'] == 0) {echo "eligible <input type=checkbox name=commodities> "; 
 			}else{
 				echo $row['last_commodities'];

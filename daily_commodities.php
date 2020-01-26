@@ -1,7 +1,7 @@
 <?php
 include("header.php");
 
-echo "<h2 valign=top>DAILY COMMODITIES</h2>";
+echo "<h2 valign=top>DAILY COMMODITIES </h2>";
 
 
 $sql = '
@@ -16,6 +16,7 @@ $sql = '
 	AND v.visit_date="' . date("Y-m-d") . '"
 	ORDER BY commodities_box_pack ASC, commodities_box_num ASC
 ';
+
 
 if ($res = mysqli_query($link, $sql)) {
 	if (mysqli_num_rows($res) > 0) {

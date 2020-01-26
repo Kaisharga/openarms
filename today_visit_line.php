@@ -22,7 +22,7 @@ if ($res = mysqli_query($link, $line_sql)) {
     if (mysqli_num_rows($res) > 0) {
 	echo "<table bgcolor=black><tr><td>"; 
         echo "<table bgcolor=white border=1>";
-		echo "<tr><th colspan=3>Today's Line for<br>".date("l F jS Y")."</th></tr>";
+		echo "<tr><th colspan=3>Today's Line for<br>".date("l, F jS Y")."</th></tr>";
         while ($row = mysqli_fetch_array($res)) { 
 
 			echo "<tr><td>";				
@@ -30,7 +30,7 @@ if ($res = mysqli_query($link, $line_sql)) {
 					echo $row['last_name'].",".$row['first_name']." (".$row['family_size'].")";
 					echo "</font></td>"; 
 			if($row['commodities_box']==1){ 
-			echo "<td>Box # ".$row['commodities_box_num']."</td>";
+			echo "<td><table><tr><td align=center><font>Box # ".$row['commodities_box_num']."</font></td></tr></table></td>";
 			} else {
 			echo "<td></td>";	
 			}

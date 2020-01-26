@@ -25,8 +25,10 @@ if ($res = mysqli_query($link, $sql)) {
 				echo "<table width=100%>";
 
 					echo "<tr><td colspan=2 align=center><font size=-2>OPEN ARMS</font></td></tr>";				
-					echo "<tr><td colspan=2 align=center><font size=-1>COMMODITIES BOX</font></td></tr>";
-					echo "<tr><td colspan=2 align=center><font size=+9>" . $row['commodities_box_num'] . "</font></td></tr>";
+					echo "<tr><td colspan=2 align=center>";
+					echo "<table border=1><tr><td><table><tr><td><font size=-1>COMMODITIES BOX</font></td></tr>";
+					echo "<tr><td align=center><font size=+9>" . $row['commodities_box_num'] . "</font></td></tr></table>";
+					echo "</tr></td></table></td></tr>";
 					echo "<tr><td align=center><font size=+4>" . $row['first_name'] . " " . $row['last_name'] . "";
 					echo " (" . $row['family_size'] . ")</font></td></tr>";
 					echo "<tr><td colspan=2 align=right><font size=+1>" . date("l, F d, Y") . "</font></td></tr>";

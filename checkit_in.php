@@ -2,11 +2,12 @@
 INCLUDE "dbcon.php";
 
 if(isset($_POST['member_id'])){
-
+	
 	if(isset($_POST['commodities'])){
 	$c_box=1;	
 	$c_box_num=$_POST['commodities_box_num'];
 	$c_boxline_num=$_POST['commodities_line_num'];
+	$c_memberid=$_POST['member_id'];
 
 	}else{
 	$c_box=0;	
@@ -43,8 +44,12 @@ if(isset($_POST['member_id'])){
 	} else {
 		echo "<br> Error: ".$sql."<br>".$link->error;
 	}
-
 }
 
+if($c_box==1) {
+header('Location: checkin_print_label.php?member_id='.$c_memberid.'');
+
+}else{
 header('Location: daily_checkin.php'); 
+}
 ?>
