@@ -23,8 +23,11 @@ if ($res = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($res) > 0) { 
         echo "<table bgcolor=black valign=top>"; 
         while ($row = mysqli_fetch_array($res)) { 
-            echo "<tr><td><a href=index.php?member_id=".$row['member_id'].">"; 	
-			echo $row['last_name'].",".$row['first_name']." (".$row['family_size'].")</td></tr>"; 
+            echo "<tr><td>";
+			echo "<a href=index.php?member_id=".$row['member_id'].">";
+			if($row['validated'] == 1) { echo "<font color=lightgreen>"; }else{ echo ""; }			
+			echo $row['last_name'].",".$row['first_name']." (".$row['family_size'].")";
+			echo "</font></a></td></tr>"; 
         } 
         echo "</table>"; 
     } 
