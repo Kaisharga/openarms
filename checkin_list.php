@@ -69,7 +69,7 @@ if ($res = mysqli_query($link, $sql)) {
 			}else{
 			echo "<tr bgcolor=black color=white><td>";
 			}
-			if($row['validated'] == 1) { echo "<font size=+3 color=green>"; }else{ echo "<font size=+3 color=white>"; }
+			if($row['validated'] == 1) { echo "<font size=+3 color=lightgreen>"; }else{ echo "<font size=+3 color=white>"; }
 			echo $row['last_name'].",".$row['first_name']." (".$row['family_size'].")";
 			echo "</font></td><td align=center><font size=+2 color=white>";
 			if($row['last_commodities'] == 0) {echo "eligible <input type=checkbox name=commodities> "; 
