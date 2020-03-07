@@ -4,11 +4,11 @@
 I. Installing XAMPP
 1. Download and install [XAMPP](https://www.apachefriends.org/download.html) 64-bit for Windows.
 2. Run the installer, and make sure the following options are selected:
-a. Apache
-b. MySQL
-c. PHP
-d. PHPMyAdmin
-All other options can be deselected.
+    * Apache
+    * MySQL
+    * PHP
+    * PHPMyAdmin
+    * All other options can be deselected.
 3. The installer should install to the c:\xampp directory.
 
 II. Installing Git

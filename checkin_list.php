@@ -58,24 +58,37 @@ ORDER BY LAST_NAME ASC
 
 if ($res = mysqli_query($link, $sql)) { 
     if (mysqli_num_rows($res) > 0) { 
-        echo "<table bgcolor=black><tr><td>";
+		echo "<table bgcolor=black><tr><td>";
 		echo "<table bgcolor=white valign=top border=1 padding=16>";
-        echo "<tr><th align=left>Name <i>(Family size)</i></th><th align=right>Commodities Box</th><th></th></tr>";
+    echo "<tr><th align=left>Name <i>(Family size)</i></th><th align=right>Commodities Box</th><th></th></tr>";
         
 		while ($row = mysqli_fetch_array($res)) { 
 			echo "<form action=checkit_in.php method=POST>";
-            if($row['intRow'] % 2 == 0){
-			echo "<tr bgcolor=2B2D2F color=white><td>";
-			}else{
-			echo "<tr bgcolor=black color=white><td>";
+						
+			if($row['intRow'] % 2 == 0) {
+				echo "<tr bgcolor=2B2D2F color=white><td>";
 			}
-			if($row['validated'] == 1) { echo "<font size=+3 color=lightgreen>"; }else{ echo "<font size=+3 color=white>"; }
+			else {
+				echo "<tr bgcolor=black color=white><td>";
+			}
+
+			if($row['validated'] == 1) { 
+				echo "<font size=+3 color=lightgreen>"; 
+			}
+			else { 
+				echo "<font size=+3 color=white>"; 
+			}
+
 			echo $row['last_name'].",".$row['first_name']." (".$row['family_size'].")";
 			echo "</font></td><td align=center><font size=+2 color=white>";
-			if($row['last_commodities'] == 0) {echo "eligible <input type=checkbox name=commodities> "; 
-			}else{
+
+			if($row['last_commodities'] == 0) {
+				echo "eligible <input type=checkbox name=commodities> "; 
+			}
+			else {
 				echo $row['last_commodities'];
 			}
+
 			echo "</td><td><button name=checkin value=checkin>CHECK IN</button></td></tr>"; 
 ?><input type="hidden" id="member_id" name="member_id" value="<?php echo $row['member_id']; ?>"> <?php
 ?><input type="hidden" id="line_number" name="line_number" value="<?php echo $mline; ?>"> <?php

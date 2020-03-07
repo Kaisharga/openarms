@@ -20,20 +20,32 @@ ORDER BY v.line_number ASC
 
 if ($res = mysqli_query($link, $line_sql)) { 
     if (mysqli_num_rows($res) > 0) {
-	echo "<table bgcolor=black><tr><td>"; 
-        echo "<table bgcolor=white border=1>";
-		echo "<tr><th colspan=3>Today's Line for<br>".date("l, F jS Y")."</th></tr>";
-        while ($row = mysqli_fetch_array($res)) { 
-
+			echo "<table bgcolor=black><tr><td>"; 
+			echo "<table bgcolor=white border=1>";
+			echo "<tr><th colspan=4>Today's Line for<br>".date("l, F jS Y")."</th></tr>";
+				
+		while ($row = mysqli_fetch_array($res)) { 
 			echo "<tr><td>";				
-				if($row['validated'] == 1) { echo "<font size=+2 color=green>"; }else{ echo "<font size=+2 color=black>"; }
-					echo $row['last_name'].",".$row['first_name']." (".$row['family_size'].")";
-					echo "</font></td>"; 
-			if($row['commodities_box']==1){ 
-			echo "<td><table><tr><td align=center><font>Box # ".$row['commodities_box_num']."</font></td></tr></table></td>";
-			} else {
-			echo "<td></td>";	
+				
+			if($row['validated'] == 1) { 
+				echo "<font size=+2 color=green>"; 
 			}
+			else { 
+				echo "<font size=+2 color=black>"; 
+			}
+
+			echo $row['last_name'].",".$row['first_name']." (".$row['family_size'].")";
+			echo "</font></td>"; 
+
+			if($row['commodities_box']==1){ 
+				echo "<td><table><tr><td align=center><font>Box # ".$row['commodities_box_num']."</font></td></tr></table></td>";
+			} 
+			else {
+				echo "<td></td>";	
+			}
+
+			echo "<td style='padding: 5px; font-weight: bold;'>#".$row['line_number']."</td>";
+
 	    echo "<td><form action=deleteit_in.php method=POST><button name=checkin value=checkin>DELETE</button></td></tr>"; 
 ?><input type="hidden" id="member_id" name="member_id" value="<?php echo $row['member_id']; ?>"> <?php
 ?><input type="hidden" id="line_number" name="line_number" value="<?php echo $mline; ?>"> <?php

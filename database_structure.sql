@@ -45,7 +45,9 @@ CREATE TABLE `members` (
   `zipcode` varchar(250) NOT NULL,
   `jeffco_resident` int(11) NOT NULL,
   `data_review_date` date NOT NULL,
-  `ethnicity` varchar(250) NOT NULL
+  `ethnicity` varchar(250) NOT NULL,
+  `validated` INT(1) NOT NULL,
+  `validated_date` DATE NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
