@@ -29,38 +29,46 @@ if ($res = mysqli_query($link, $maxboxline)) {
 $mline++;
 $mbox++;
 $mboxline++;
+$page = (intval(isset($_GET['page']) ? $_GET['page'] : '1') - 1) * 20;
 
 echo "<table><tr><td>";
 
 $sql = "
-SELECT m.*, 
+SELECT mem.*, 
 (
     SELECT COALESCE(MAX(v.visit_date), 0)
     FROM visits v 
-    WHERE m.member_id=v.member_id AND MONTH(v.visit_date) = MONTH(CURDATE()) AND YEAR(v.visit_date) = YEAR(CURDATE())AND commodities_box_pack > 0  
+    WHERE mem.member_id=v.member_id AND MONTH(v.visit_date) = MONTH(CURDATE()) AND YEAR(v.visit_date) = YEAR(CURDATE()) AND v.commodities_box_pack > 0
 ) last_commodities
-,ROW_NUMBER() OVER (ORDER BY LAST_NAME ASC) AS intRow
-FROM members m
+,ROW_NUMBER() OVER (ORDER BY mem.last_name ASC) AS intRow
+FROM 
+(
+SELECT m.*
+FROM
+members m
 WHERE 1=1
 "; 
 
-if (isset($_GET['search']) && isset($_GET['search_name'])) {
+if (isset($_GET['search'])) 
+{
 	$text = $_GET['search'];
-	$sql = $sql . " AND (m.first_name LIKE '%" . $text . "%' OR m.last_name LIKE '%" . $text . "%')";
-} else if (isset($_GET['search']) && isset($_GET['search_addr'])) {
-		$text = $_GET['search'];
-		$sql = $sql . " AND (m.addr_line_1 LIKE '%" . $text . "%' OR m.addr_line_2 LIKE '%" . $text . "%' OR m.city LIKE '%" . $text . "%' OR m.zipcode LIKE '%" . $text . "%')";
+	$sql = $sql . " AND (m.first_name LIKE '%" . $text . "%' OR m.last_name LIKE '%" . $text . "%'";
+	$sql = $sql . " OR m.addr_line_1 LIKE '%" . $text . "%' OR m.addr_line_2 LIKE '%" . $text . "%' OR m.city LIKE '%" . $text . "%' OR m.zipcode LIKE '%" . $text . "%')";
 }
 
 $sql = $sql . "
-ORDER BY LAST_NAME ASC
+ORDER BY m.last_name ASC, m.first_name ASC
+"
+. "LIMIT " . $page . ",20"
+. "
+) mem
 ";
 
 if ($res = mysqli_query($link, $sql)) { 
     if (mysqli_num_rows($res) > 0) { 
 		echo "<table bgcolor=black><tr><td>";
 		echo "<table bgcolor=white valign=top border=1 padding=16>";
-    echo "<tr><th align=left>Name <i>(Family size)</i></th><th align=right>Commodities Box</th><th></th></tr>";
+    echo "<tr><th align=left>Name <i>(Family size)</i></th><th align=left>Address</th><th>Commodities Box</th><th></th></tr>";
         
 		while ($row = mysqli_fetch_array($res)) { 
 			echo "<form action=checkit_in.php method=POST>";
@@ -80,7 +88,10 @@ if ($res = mysqli_query($link, $sql)) {
 			}
 
 			echo $row['last_name'].",".$row['first_name']." (".$row['family_size'].")";
-			echo "</font></td><td align=center><font size=+2 color=white>";
+			echo "</font></td><td><p style='color:white;margin:5px;'>";
+			echo $row['addr_line_1']."<br>".$row['addr_line_2']."<br>".$row['city'].", ".$row['state']." ".$row['zipcode'];
+			echo "</p></td>";
+			echo "<td align=center><font size=+2 color=white>";
 
 			if($row['last_commodities'] == 0) {
 				echo "eligible <input type=checkbox name=commodities> "; 
