@@ -163,7 +163,7 @@ if ($res = mysqli_query($link, $list_sql)) {
 
 <tr><td>Last Review Date:</td><td><?php echo $row['data_review_date']; ?></td></tr>
 <tr><td align=center><button type="submit" name="maction" value="update">UPDATE</button></td>
-<td align=center><button type="submit" name="maction" value="delete">DELETE</button></td></tr>
+<td align=center><button onclick='return confirmDelete()' type="submit" name="maction" value="delete">DELETE</button></td></tr>
 </table>
 <?php
         } 
@@ -183,3 +183,12 @@ else {
 } 
 ?>
 
+<script>
+function confirmDelete() {
+    if( confirm("Are you sure you want to delete this entry?") ) {
+        return true;
+    } else {
+        return false;
+    }
+}
+</script>

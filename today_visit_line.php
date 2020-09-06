@@ -46,7 +46,7 @@ if ($res = mysqli_query($link, $line_sql)) {
 
 			echo "<td style='padding: 5px; font-weight: bold;'>#".$row['line_number']."</td>";
 
-	    echo "<td><form action=deleteit_in.php method=POST><button name=checkin value=checkin>DELETE</button></td></tr>"; 
+	    echo "<td><form onsubmit='return confirmDelete()' action=deleteit_in.php method=POST><button name=checkin value=checkin>DELETE</button></td></tr>"; 
 ?><input type="hidden" id="member_id" name="member_id" value="<?php echo $row['member_id']; ?>"> <?php
 ?><input type="hidden" id="line_number" name="line_number" value="<?php echo $mline; ?>"> <?php
 ?><input type="hidden" id="commodities_box_num" name="commodities_box_num" value="<?php echo $mbox; ?>"> <?php
@@ -65,3 +65,13 @@ if ($res = mysqli_query($link, $line_sql)) {
                                 .mysqli_error($link); 
 } 
 ?>
+
+<script>
+function confirmDelete() {
+    if( confirm("Are you sure you want to delete this entry?") ) {
+        return true;
+    } else {
+        return false;
+    }
+}
+</script>
