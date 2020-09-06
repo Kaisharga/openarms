@@ -39,8 +39,13 @@ SELECT mem.*,
     SELECT COALESCE(MAX(v.visit_date), 0)
     FROM visits v 
     WHERE mem.member_id=v.member_id AND MONTH(v.visit_date) = MONTH(CURDATE()) AND YEAR(v.visit_date) = YEAR(CURDATE()) AND v.commodities_box_pack > 0
-) last_commodities
-,ROW_NUMBER() OVER (ORDER BY mem.last_name ASC) AS intRow
+) last_commodities,
+(
+    SELECT COALESCE(MAX(v.visit_date), 0)
+    FROM visits v 
+    WHERE mem.member_id=v.member_id AND DAY(v.visit_date) = DAY(CURDATE()) AND MONTH(v.visit_date) = MONTH(CURDATE()) AND YEAR(v.visit_date) = YEAR(CURDATE())
+) last_visit
+,ROW_NUMBER() OVER (ORDER BY mem.last_name ASC, mem.first_name ASC) AS intRow
 FROM 
 (
 SELECT m.*
@@ -71,7 +76,7 @@ if ($res = mysqli_query($link, $sql)) {
     echo "<tr><th align=left>Name <i>(Family size)</i></th><th align=left>Address</th><th>Commodities Box</th><th></th></tr>";
         
 		while ($row = mysqli_fetch_array($res)) { 
-			echo "<form action=checkit_in.php method=POST>";
+			echo "<form action=checkit_in.php id=memberList method=POST>";
 						
 			if($row['intRow'] % 2 == 0) {
 				echo "<tr bgcolor=2B2D2F color=white><td>";
@@ -100,7 +105,13 @@ if ($res = mysqli_query($link, $sql)) {
 				echo $row['last_commodities'];
 			}
 
-			echo "</td><td><button name=checkin value=checkin>CHECK IN</button></td></tr>"; 
+			if($row['last_visit'] == 0) {
+				echo "</td><td><button name=checkin value=checkin>CHECK IN</button></td></tr>"; 
+			}
+			else {
+				echo "</td><td><button name=checkin disabled value=checkedin>CHECKED IN</button></td></tr>";
+			}
+
 ?><input type="hidden" id="member_id" name="member_id" value="<?php echo $row['member_id']; ?>"> <?php
 ?><input type="hidden" id="line_number" name="line_number" value="<?php echo $mline; ?>"> <?php
 ?><input type="hidden" id="commodities_box_num" name="commodities_box_num" value="<?php echo $mbox; ?>"> <?php
@@ -120,3 +131,4 @@ else {
 } 
 
 ?>
+
