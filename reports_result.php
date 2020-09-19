@@ -133,7 +133,6 @@ if ($res = mysqli_query($link, $sql)) {
     echo "</pre>";
   } else {
     echo nl2br("No matching records are found for your selection. \n");
-    // echo $sql;
   }
 } else {
   echo nl2br("ERROR: Could not able to execute $sql. \n");

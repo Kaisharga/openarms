@@ -59,6 +59,8 @@ echo "</td></tr><tr><td align=center>";
 echo "<a href=reports_select.php>REPORT SELECTION</a>";
 echo "</td></tr><tr><td align=center>";
 echo "<a href=print_list.php target=\"_blank\" onclick=\"popupCode();return false;\">PRINT LINE FOR TODAY</a>";
+echo "</td></tr><tr><td align=center>";
+echo "<a href=db_menu.php>DATABASE MENU</a>";
 echo "</td></tr></table>";
 echo "</td><td valign=top>";
 
