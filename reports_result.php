@@ -26,14 +26,17 @@ switch ($rpt_value) {
   case "people_rpt":
     echo "<h3 valign=top align=center>Total People Served</h3>";
     $select_fields = 'SUM(family_size) as "Total People", SUM(family_size - under19 - over64) as "Adults", SUM(under19) AS "Children", SUM(over64) as "Seniors"';
-    break;
+    $extra_where = '';  
+  break;
   case "TEFAP_rpt":
     echo "<h3 valign=top align=center>People and TEFAP</h3>";
-    $select_fields = 'COUNT(family_size) as "Families", SUM(family_size) as "Total People", COUNT(commodities_box) as "Boxes Given", SUM(visit_id) as "Visits Made"';
-    break;
+    $select_fields = 'COUNT(family_size) as "Families", SUM(family_size) as "Total People", SUM(commodities_box_pack) as "Boxes Given", COUNT(visit_id) as "Visits Made"';
+    $extra_where = ' AND commodities_box_pack = 1';
+  break;
   case "count_rpt":
     echo "<h3 valign=top align=center>Total Goods Given</h3>";
-    $select_fields = 'COUNT(commodities_box) as "Boxes Given", COUNT(visit_id) as "Visits Made"';
+    $select_fields = 'SUM(commodities_box_pack) as "Boxes Given", COUNT(visit_id) as "Visits Made"';
+    $extra_where = '';  
     break;
 }
 
@@ -105,7 +108,7 @@ echo "<h4 valign=top align=center> Generated on " . date("D F d Y g:i A") . "</h
 
 $sql = $select_fields . "FROM members m, visits v WHERE m.member_id=v.member_id 
 AND visit_date >= \"${start_date}\"
-AND visit_date <= LAST_DAY(\"{$end_date}\")" . $group_fields . $order_fields;
+AND visit_date <= LAST_DAY(\"{$end_date}\")" . $extra_where . $group_fields . $order_fields;
 $first_line = true;
 
 if ($res = mysqli_query($link, $sql)) {
