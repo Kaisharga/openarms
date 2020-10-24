@@ -9,6 +9,8 @@ namespace WhatIsMyLanIp
     {
         static void Main(string[] args)
         {
+            Console.Title = "Open Arms IP Address";
+
             while(true)
             {
                 var hostName = Dns.GetHostName();
