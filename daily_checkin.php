@@ -54,9 +54,9 @@ function resetPage()
 
 <?php
 
-echo "<table><tr><td valign=top>";
+echo "<table><tr><td style='vertical-align: top;'>";
 INCLUDE("today_visit_line.php");
-echo "</td><td>";
+echo "</td><td style='vertical-align: top;'>";
 INCLUDE("checkin_list.php");
 echo "</td></tr></table>";
 
