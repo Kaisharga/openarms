@@ -29,7 +29,7 @@ if ($res = mysqli_query($link, $maxboxline)) {
 $mline++;
 $mbox++;
 $mboxline++;
-$page = (intval(isset($_GET['page']) ? $_GET['page'] : '1') - 1) * 20;
+$page = (intval(!empty($_GET['page']) ? $_GET['page'] : '1') - 1) * 20;
 
 echo "<table><tr><td>";
 
@@ -54,7 +54,7 @@ members m
 WHERE 1=1
 "; 
 
-if (isset($_GET['search'])) 
+if (!empty($_GET['search'])) 
 {
 	$text = $_GET['search'];
 	$sql = $sql . " AND (m.first_name LIKE '%" . $text . "%' OR m.last_name LIKE '%" . $text . "%'";

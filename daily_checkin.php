@@ -33,7 +33,7 @@ function resetPage()
 <form action=daily_checkin.php method=GET style='display:inline-block'>
 <tr>
 	<td>
-			<input type="text" id='search' name='search' style='width:200px;' autofocus value="<?php echo (isset($_GET['search'])) ? htmlspecialchars($_GET['search']) : ''; ?>" />
+			<input type="text" id='search' name='search' style='width:200px;' autofocus value="<?php echo (!empty($_GET['search'])) ? htmlspecialchars($_GET['search']) : ''; ?>" />
 			<button type="submit" onclick="resetPage();">Search</button>
 			<button type="submit" onclick="customReset();">Clear</button>
 	</td>
@@ -41,9 +41,9 @@ function resetPage()
 <tr><td>&nbsp;</td></tr>
 <tr>
 	<td>
-		<input type='hidden' id='page' name='page' value="<?php echo (isset($_GET['page'])) ? $_GET['page'] : '1'; ?>" />
+		<input type='hidden' id='page' name='page' value="<?php echo (!empty($_GET['page'])) ? $_GET['page'] : '1'; ?>" />
 		<button type='submit' onclick='decrementPage();'>&lt;&lt;</button>
-		Page: <?php echo (isset($_GET['page'])) ? $_GET['page'] : '1'; ?>
+		Page: <?php echo (!empty($_GET['page'])) ? $_GET['page'] : '1'; ?>
 		<button type='submit' onclick='incrementPage();'>&gt;&gt;</button>
 	</td>
 </tr>
